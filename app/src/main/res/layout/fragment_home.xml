@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.iqonic.store.utils.CustomSwipeToRefresh xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/refreshLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorScreenBackground"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rl_head"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_middle"
+                android:visibility="gone">
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/slideViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_180sdp"
+                    android:clipToPadding="false"
+                    android:focusable="false"
+                    android:overScrollMode="never"
+                    android:paddingStart="@dimen/_16sdp"
+                    android:paddingEnd="@dimen/_20sdp" />
+
+                <com.iqonic.store.utils.dotsindicator.DotsIndicator
+                    android:id="@+id/dots"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_below="@id/slideViewPager"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="@dimen/spacing_standard"
+                    android:visibility="gone"
+                    app:dot_height="@dimen/spacing_control"
+                    app:dot_width="@dimen/spacing_control" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlNewest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_standard_new"
+                android:layout_marginTop="@dimen/spacing_standard"
+                android:layout_marginEnd="@dimen/spacing_standard_new">
+
+                <TextView
+                    style="@style/Heading"
+                    android:text="@string/lbl_newest_product" />
+
+                <include
+                    android:id="@+id/viewNewest"
+                    layout="@layout/layout_view_all" />
+            </RelativeLayout>
+
+            <com.iqonic.store.utils.shimmer.ShimmerRecyclerView
+                android:id="@+id/rvNewProduct"
+                style="@style/ShimmerRecyclerView"
+                app:shimmer_demo_angle="20"
+                app:shimmer_demo_child_count="4"
+                app:shimmer_demo_grid_child_count="2"
+                app:shimmer_demo_layout="@layout/list_item_shimmer_layout"
+                app:shimmer_demo_layout_manager_type="linear_horizontal"
+                app:shimmer_demo_shimmer_color="@color/white" />
+
+            <RelativeLayout
+                android:id="@+id/rlFeatured"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_standard_new"
+                android:layout_marginEnd="@dimen/spacing_standard_new">
+
+                <TextView
+                    style="@style/Heading"
+                    android:text="@string/lbl_Featured" />
+
+                <include
+                    android:id="@+id/viewPopular"
+                    layout="@layout/layout_view_all" />
+            </RelativeLayout>
+
+
+            <com.iqonic.store.utils.shimmer.ShimmerRecyclerView
+                android:id="@+id/rcvFeaturedProducts"
+                style="@style/ShimmerRecyclerView"
+                app:shimmer_demo_angle="20"
+                app:shimmer_demo_child_count="4"
+                app:shimmer_demo_grid_child_count="2"
+                app:shimmer_demo_layout="@layout/list_item_shimmer_layout"
+                app:shimmer_demo_layout_manager_type="linear_horizontal"
+                app:shimmer_demo_shimmer_color="@color/white" />
+
+
+            <LinearLayout
+                android:id="@+id/llDeal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_dashboard_view"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_standard_new"
+                    android:layout_marginTop="@dimen/spacing_standard_new"
+                    android:layout_marginRight="@dimen/spacing_standard_new">
+
+                    <TextView
+                        android:id="@+id/lbl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="@string/lbl_deals_of_the_day"
+                        android:textAppearance="@style/FontBold"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/font_size_large" />
+
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnViewAllProduct"
+                        style="@style/MaterialButtonStyle.FilledLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:text="@string/lbl_view_all"
+                        android:textSize="@dimen/font_size_small"
+                        app:cornerRadius="@dimen/spacing_control" />
+
+                </RelativeLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_standard_new"
+                    android:layout_marginTop="@dimen/spacing_standard_new"
+                    android:layout_marginEnd="@dimen/spacing_standard_new"
+                    android:layout_marginBottom="@dimen/spacing_middle"
+                    android:background="@color/white"
+                    app:cardCornerRadius="@dimen/spacing_control">
+
+                    <com.iqonic.store.utils.shimmer.ShimmerRecyclerView
+                        android:id="@+id/rcvDeal"
+                        style="@style/ShimmerRecyclerView"
+                        android:paddingStart="@dimen/spacing_standard"
+                        android:paddingEnd="@dimen/spacing_standard"
+                        app:shimmer_demo_angle="20"
+                        app:shimmer_demo_child_count="4"
+                        app:shimmer_demo_grid_child_count="2"
+                        app:shimmer_demo_layout="@layout/list_item_shimmer_layout"
+                        app:shimmer_demo_layout_manager_type="grid"
+                        app:shimmer_demo_shimmer_color="@color/white" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="-30dp"
+                    android:background="@color/colorScreenBackground"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rlBestSelling"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_standard_new"
+                android:layout_marginEnd="@dimen/spacing_standard_new">
+
+                <TextView
+                    style="@style/Heading"
+                    android:text="@string/lbl_selling" />
+
+                <include
+                    android:id="@+id/viewSelling"
+                    layout="@layout/layout_view_all" />
+            </RelativeLayout>
+
+            <com.iqonic.store.utils.shimmer.ShimmerRecyclerView
+                android:id="@+id/rcvBestSelling"
+                style="@style/ShimmerRecyclerView"
+                app:shimmer_demo_angle="20"
+                app:shimmer_demo_child_count="4"
+                app:shimmer_demo_grid_child_count="2"
+                app:shimmer_demo_layout="@layout/list_item_shimmer_layout"
+                app:shimmer_demo_layout_manager_type="linear_horizontal"
+                app:shimmer_demo_shimmer_color="@color/white" />
+
+
+            <RelativeLayout
+                android:id="@+id/rlSale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_standard_new"
+                android:layout_marginEnd="@dimen/spacing_standard_new">
+
+                <TextView
+                    style="@style/Heading"
+                    android:text="@string/lbl_sale" />
+
+                <include
+                    android:id="@+id/viewSale"
+                    layout="@layout/layout_view_all" />
+            </RelativeLayout>
+
+            <com.iqonic.store.utils.shimmer.ShimmerRecyclerView
+                android:id="@+id/rcvSale"
+                style="@style/ShimmerRecyclerView"
+                app:shimmer_demo_angle="20"
+                app:shimmer_demo_child_count="4"
+                app:shimmer_demo_grid_child_count="2"
+                app:shimmer_demo_layout="@layout/list_item_shimmer_layout"
+                app:shimmer_demo_layout_manager_type="linear_horizontal"
+                app:shimmer_demo_shimmer_color="@color/white" />
+
+
+            <LinearLayout
+                android:id="@+id/rlOffer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_dashboard_view"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_standard_new"
+                    android:layout_marginTop="@dimen/spacing_standard_new"
+                    android:layout_marginEnd="@dimen/spacing_standard_new">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="@string/lbl_offer"
+                        android:textAppearance="@style/FontBold"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/font_size_large" />
+
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/viewOffer"
+                        style="@style/MaterialButtonStyle.FilledLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:text="@string/lbl_view_all"
+                        android:textSize="@dimen/font_size_small"
+                        app:cornerRadius="@dimen/spacing_control" />
+
+                </RelativeLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_standard_new"
+                    android:layout_marginTop="@dimen/spacing_standard_new"
+                    android:layout_marginEnd="@dimen/spacing_standard_new"
+                    android:layout_marginBottom="@dimen/spacing_middle"
+                    android:background="@color/white"
+                    app:cardCornerRadius="@dimen/spacing_control">
+
+                    <com.iqonic.store.utils.shimmer.ShimmerRecyclerView
+                        android:id="@+id/rcvOffer"
+                        style="@style/ShimmerRecyclerView"
+                        android:paddingStart="@dimen/spacing_standard"
+                        android:paddingEnd="@dimen/spacing_standard"
+                        app:shimmer_demo_angle="20"
+                        app:shimmer_demo_child_count="2"
+                        app:shimmer_demo_grid_child_count="2"
+                        app:shimmer_demo_layout="@layout/list_item_shimmer_layout"
+                        app:shimmer_demo_layout_manager_type="grid"
+                        app:shimmer_demo_shimmer_color="@color/white" />
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="-30dp"
+                    android:background="@color/colorScreenBackground"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rlSuggest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_standard_new"
+                android:layout_marginEnd="@dimen/spacing_standard_new">
+
+                <TextView
+                    style="@style/Heading"
+                    android:text="@string/lbl_rec_product" />
+
+                <include
+                    android:id="@+id/viewSuggest"
+                    layout="@layout/layout_view_all" />
+            </RelativeLayout>
+
+            <com.iqonic.store.utils.shimmer.ShimmerRecyclerView
+                android:id="@+id/rcvSuggest"
+                style="@style/ShimmerRecyclerView"
+                app:shimmer_demo_angle="20"
+                app:shimmer_demo_child_count="4"
+                app:shimmer_demo_grid_child_count="2"
+                app:shimmer_demo_layout="@layout/list_item_shimmer_layout"
+                app:shimmer_demo_layout_manager_type="linear_horizontal"
+                app:shimmer_demo_shimmer_color="@color/white" />
+
+            <RelativeLayout
+                android:id="@+id/rlLike"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_standard_new"
+                android:layout_marginEnd="@dimen/spacing_standard_new">
+
+                <TextView
+                    style="@style/Heading"
+                    android:text="@string/lbl_you_may_like" />
+
+                <include
+                    android:id="@+id/viewlike"
+                    layout="@layout/layout_view_all" />
+            </RelativeLayout>
+
+            <com.iqonic.store.utils.shimmer.ShimmerRecyclerView
+                android:id="@+id/rcvLike"
+                style="@style/ShimmerRecyclerView"
+                app:shimmer_demo_angle="20"
+                app:shimmer_demo_child_count="4"
+                app:shimmer_demo_grid_child_count="2"
+                app:shimmer_demo_layout="@layout/list_item_shimmer_layout"
+                app:shimmer_demo_layout_manager_type="linear_horizontal"
+                app:shimmer_demo_shimmer_color="@color/white" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</com.iqonic.store.utils.CustomSwipeToRefresh>
